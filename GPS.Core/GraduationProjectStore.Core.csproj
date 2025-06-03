@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Feature\Authentications\Command\Validations\" />
+    <Folder Include="Feature\Authorization\Command\Validations\" />
+    <Folder Include="Feature\Authorization\Query\" />
+    <Folder Include="Feature\Project\Command\Validations\" />
+    <Folder Include="Feature\Student\Command\Validations\" />
+    <Folder Include="Feature\Supervisor\Command\Validations\" />
+    <Folder Include="Feature\Department\Command\Validations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GPS.Infrastructure\GraduationProjecrStore.Infrastructure.csproj" />
+    <ProjectReference Include="..\GPS.Service\GraduationProjectStore.Service.csproj" />
+  </ItemGroup>
+
+</Project>
