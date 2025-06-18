@@ -1,12 +1,18 @@
-# Step 1: Build the app
+# Use the .NET 8 SDK to build the app
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY . .
-RUN dotnet publish -c Release -o /app
 
-# Step 2: Serve the app
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# Copy everything and restore dependencies
+COPY . .
+RUN dotnet restore GraduationProjectStore.Api/GraduationProjectStore.API.csproj
+
+# Build the app
+RUN dotnet publish GraduationProjectStore.Api/GraduationProjectStore.API.csproj -c Release -o /app/publish
+
+# Use the .NET 8 runtime to run the app
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
-COPY --from=build /app .
-EXPOSE 80
-ENTRYPOINT ["dotnet", "finalproject.dll"]
+COPY --from=build /app/publish .
+
+# Run the app
+ENTRYPOINT ["dotnet", "GraduationProjectStore.API.dll"]
